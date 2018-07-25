@@ -11,6 +11,10 @@ elifePipeline {
             sh "IMAGE_TAG=${commit} docker-compose build"
         }
 
+        stage 'Run tests', {
+            sh "IMAGE_TAG=${commit} ./project_tests.sh"
+        }
+
         stage 'Smoke tests', {
             try {
                 sh "IMAGE_TAG=${commit} docker-compose up &"
