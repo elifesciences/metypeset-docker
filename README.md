@@ -9,25 +9,17 @@ A docker image for [meTypeset](https://github.com/MartinPaulEve/meTypeset).
 ## Build Container
 
 ```bash
-./build.sh
+docker-compose build
 ```
 
 ## Run Container
 
 ```bash
-./run.sh
+docker-compose up --build
 ```
-
-or:
 
 ```bash
 docker run -p 8074:8080 elifesciences/metypeset
-```
-
-or:
-
-```bash
-docker-compose up --build
 ```
 
 ## Server
