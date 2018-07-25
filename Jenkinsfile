@@ -8,15 +8,15 @@ elifePipeline {
     node('containers-jenkins-plugin') {
         stage 'Build images', {
             checkout scm
-            sh "IMAGE_TAG=${commit} ./build.sh"
+            sh "IMAGE_TAG=${commit} docker-compose build"
         }
 
         stage 'Smoke tests', {
             try {
-                sh "IMAGE_TAG=${commit} ./run.sh &"
-                sh 'docker-wait-healthy metypeset 60'
+                sh "IMAGE_TAG=${commit} docker-compose up &"
+                sh 'docker-wait-healthy metypeset_metypeset_1 60'
             } finally {
-                sh 'docker stop metypeset'
+                sh 'docker-compose down -v'
             }
         }
 
