@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    metypeset:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                METYPESET_TAG: ${METYPESET_TAG}
+        image: elifesciences/metypeset:${IMAGE_TAG}
+        environment:
+            - METYPESET_HOST=${METYPESET_HOST}
+            - METYPESET_PORT=${METYPESET_PORT}
+        ports:
+            - "8074:${METYPESET_PORT}"
