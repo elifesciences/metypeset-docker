@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.6-stretch
 
 ARG METYPESET_TAG=master
 ENV METYPESET_HOME=/opt/meTypeset
