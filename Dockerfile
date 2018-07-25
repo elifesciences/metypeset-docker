@@ -24,7 +24,7 @@ COPY requirements.txt ./requirements.server.txt
 RUN pip install -r requirements.server.txt
 
 COPY metypeset_server/ ./metypeset_server
-COPY healthcheck.sh .
+COPY healthcheck.sh requirements.dev.txt ./
 
 CMD python -m metypeset_server.server
 
