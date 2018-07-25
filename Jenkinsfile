@@ -16,7 +16,7 @@ elifePipeline {
                 sh "IMAGE_TAG=${commit} docker-compose up &"
                 sh 'docker-wait-healthy metypeset_metypeset_1 60'
             } finally {
-                sh 'docker-compose down'
+                sh 'docker-compose down -v'
             }
         }
 
