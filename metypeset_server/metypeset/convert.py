@@ -1,6 +1,7 @@
 import logging
 import os
 import subprocess
+import sys
 from tempfile import TemporaryDirectory
 from pathlib import Path
 from glob import glob
@@ -27,15 +28,17 @@ def get_metypeset_home():
     return os.environ.get('METYPESET_HOME')
 
 
-def run_command(command):
+def run_command(command, cwd=None, shell=False):
     try:
         LOGGER.info('command: %s', command)
-        output = subprocess.check_output(
+        subprocess.run(
             command,
-            stderr=subprocess.STDOUT,
-            shell=False
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            cwd=cwd,
+            shell=shell,
+            check=True
         )
-        LOGGER.info('output: %s', output)
     except subprocess.CalledProcessError as e:
         LOGGER.error('command %s failed with %s, output=%s', command, e, e.output)
         raise e
