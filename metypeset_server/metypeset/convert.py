@@ -55,8 +55,7 @@ def convert_document(filename, data_type, content):
             Path(metypeset_home).joinpath('bin/meTypeset.py'),
             sub_command,
             input_file,
-            output_dir,
-            '--purenlm'
+            output_dir
         ]]
         run_command(command)
         LOGGER.info('output files: %s', glob('%s/**/*' % output_dir, recursive=True))
