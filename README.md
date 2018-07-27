@@ -19,7 +19,7 @@ docker-compose up --build
 ```
 
 ```bash
-docker run -p 8074:8080 elifesciences/metypeset
+docker run --rm -t -i -p 8074:8080 elifesciences/metypeset
 ```
 
 ## Server
@@ -32,3 +32,10 @@ curl -X POST --show-error --form \
 
 Note: the current image doesn't include `unoconv` and therefore only works with _docx_
 (`application/vnd.openxmlformats-officedocument.wordprocessingml.document`).
+
+## CLI
+
+```bash
+docker run --rm -t -i -v"$(pwd):/data" elifesciences/metypeset \
+  python bin/meTypeset.py docx /data/test.docx /data/output
+```
