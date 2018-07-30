@@ -30,9 +30,6 @@ curl -X POST --show-error --form \
   http://localhost:8074/api/convert
 ```
 
-Note: the current image doesn't include `unoconv` and therefore only works with _docx_
-(`application/vnd.openxmlformats-officedocument.wordprocessingml.document`).
-
 ## CLI
 
 ```bash

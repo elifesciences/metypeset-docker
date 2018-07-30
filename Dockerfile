@@ -9,6 +9,10 @@ RUN apt-get update && \
   apt-get install -y unzip && \
   apt-get install -y default-jre
 
+# install unoconv
+RUN apt-get install -y unoconv
+ENV PYTHONPATH=/usr/lib/python3/dist-packages
+
 RUN wget \
   --output-document meTypeset.zip \
   https://github.com/MartinPaulEve/meTypeset/archive/${METYPESET_TAG}.zip && \
@@ -25,6 +29,7 @@ RUN pip install -r requirements.server.txt
 
 COPY metypeset_server/ ./metypeset_server
 COPY healthcheck.sh requirements.dev.txt ./
+
 
 CMD python -m metypeset_server.server
 
