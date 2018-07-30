@@ -28,23 +28,24 @@ def get_metypeset_home():
     return os.environ.get('METYPESET_HOME')
 
 
-def run_command(command, cwd=None, shell=False):
+def run_command(command, cwd=None, shell=False, timeout=None):
     try:
-        LOGGER.info('command: %s', command)
+        LOGGER.info('command: %s (timeout=%s)', command, timeout)
         subprocess.run(
             command,
             stdout=sys.stdout,
             stderr=sys.stderr,
             cwd=cwd,
             shell=shell,
-            check=True
+            check=True,
+            timeout=timeout
         )
     except subprocess.CalledProcessError as e:
         LOGGER.error('command %s failed with %s, output=%s', command, e, e.output)
         raise e
 
 
-def convert_document(filename, data_type, content):
+def convert_document(filename, data_type, content, timeout=None):
     metypeset_home = get_metypeset_home()
     sub_command = SUB_COMMAND_BY_MIME_TYPE_MAP[data_type]
     with TemporaryDirectory(suffix='-metypeset') as path:
@@ -60,7 +61,7 @@ def convert_document(filename, data_type, content):
             input_file,
             output_dir
         ]]
-        run_command(command)
+        run_command(command, timeout=timeout)
         LOGGER.info('output files: %s', glob('%s/**/*' % output_dir, recursive=True))
         return {
             'type': MimeTypes.JATS_XML,

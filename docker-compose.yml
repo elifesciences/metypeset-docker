@@ -11,5 +11,6 @@ services:
         environment:
             - METYPESET_HOST=${METYPESET_HOST}
             - METYPESET_PORT=${METYPESET_PORT}
+            - METYPESET_TIMEOUT=${METYPESET_TIMEOUT}
         ports:
             - "8074:${METYPESET_PORT}"
