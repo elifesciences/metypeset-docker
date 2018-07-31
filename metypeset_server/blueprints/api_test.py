@@ -100,7 +100,8 @@ class TestApiBlueprint(object):
             convert_document_mock.assert_called_with(
                 content=DOCUMENT_CONTENT,
                 filename=DOCX_FILENAME,
-                data_type=MimeTypes.DOCX
+                data_type=MimeTypes.DOCX,
+                timeout=None
             )
             assert response.status_code == 200
             assert response.data == XML_CONTENT
@@ -120,7 +121,8 @@ class TestApiBlueprint(object):
             convert_document_mock.assert_called_with(
                 content=DOCUMENT_CONTENT,
                 filename=DOCX_FILENAME,
-                data_type=MimeTypes.DOCX
+                data_type=MimeTypes.DOCX,
+                timeout=None
             )
             assert response.status_code == 200
             assert response.data == XML_CONTENT
@@ -140,7 +142,8 @@ class TestApiBlueprint(object):
             convert_document_mock.assert_called_with(
                 content=DOCUMENT_CONTENT,
                 filename='%s.docx' % DEFAULT_FILENAME,
-                data_type=MimeTypes.DOCX
+                data_type=MimeTypes.DOCX,
+                timeout=None
             )
             assert response.status_code == 200
             assert response.data == XML_CONTENT

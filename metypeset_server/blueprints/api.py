@@ -39,7 +39,7 @@ def _get_filename_mimetype_and_content():
     return filename, data_type, content
 
 
-def create_api_blueprint():
+def create_api_blueprint(timeout=None):
     blueprint = Blueprint('api', __name__)
 
     supported_types = get_supported_mime_types()
@@ -65,7 +65,8 @@ def create_api_blueprint():
         conversion_result = convert_document(
             content=content,
             filename=filename,
-            data_type=data_type
+            data_type=data_type,
+            timeout=timeout
         )
         response_content = conversion_result['content']
         response_type = conversion_result['type']
